@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Diwali</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Three.js CDN for 3D crackers -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
+</head>
+<body>
+    <div id="name-modal" class="modal">
+        <div class="modal-content festive-modal">
+            <div class="diya-icon">🪔</div>
+            <h2 class="modal-title">Welcome to Diwali Celebration! with Happy</h2>
+            <p class="modal-desc">Enter your name to receive your personalized Diwali wish and enjoy the fireworks!</p>
+            <input type="text" id="username" placeholder="Your Name" autofocus />
+            <button id="submit-name">✨ Start Celebration ✨</button>
+            <div class="modal-smiles">
+                <span>🪔</span> <span>🎆</span> <span>🎇</span>
+            </div>
+        </div>
+    </div>
+    <div id="main-content" class="hidden">
+        <h1 id="greeting"></h1>
+        <h2 id="wishes"></h2>
+        <canvas id="fireworks"></canvas>
+    </div>
+    <footer class="site-footer">created by Naveen R</footer>
+    <script src="diwali3d.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
+

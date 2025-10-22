@@ -1,0 +1,4 @@
+/ecs-terraform/.terraform/ 
+/ecs-terraform/.terraform.lock.hcl 
+
+/ecs-terraform/tfplan 
