@@ -1,9 +1,6 @@
 name: CI/CD ECS Deployment
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
     inputs:
       AWS_ACCOUNT_ID:
