@@ -66,4 +66,4 @@ jobs:
       - name: Push Docker Image to ECR
         run: |
           docker tag ${{ env.IMAGE_NAME }}:latest ${{ github.event.inputs.AWS_ACCOUNT_ID }}.dkr.ecr.${{ github.event.inputs.AWS_DEFAULT_REGION }}.amazonaws.com/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
-          docker push ${{ github.event.inputs.AWS_ACCOUNT_ID }}.dkr.ecr.${{ github.event.inputs.AWS_DEFAULT_REGION }}.amazonaws.com/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+          docker push ${{ github.event.inputs.AWS_ACCOUNT_ID }}.dkr.ecr.${{ github.event.inputs.AWS_DEFAULT_REGION }}.amazonaws.com/ecs-test-repo:${{ env.IMAGE_TAG }}
