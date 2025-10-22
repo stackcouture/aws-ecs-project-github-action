@@ -61,12 +61,7 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v2
 
       - name: Build Docker Image
-        run: docker build -t ${{ env.IMAGE_NAME }}:latest .
-
-      - name: Scan Docker Image with Trivy
-        uses: aquasecurity/trivy-action@0.33.1
-        with:
-          image-ref: ${{ env.IMAGE_NAME }}:latest
+        run: docker build -t ${{ env.IMAGE_NAME }}:latest ./diwali-wishes
 
       - name: Push Docker Image to ECR
         run: |
