@@ -1,0 +1,45 @@
+name: CI/CD ECS Deployment
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      AWS_ACCOUNT_ID:
+        description: 'Enter AWS Account ID'
+        required: true
+        default: '104824081961'
+      AWS_DEFAULT_REGION:
+        description: 'Enter AWS Region'
+        required: true
+        default: 'ap-south-1'
+      BRANCH:
+        description: 'Deployment branch for CD repo'
+        required: true
+        default: 'main'
+
+
+env:
+  IMAGE_NAME: diwali-wishes
+  IMAGE_TAG: 1.0.${{ github.run_number }}
+  GIT_URL: https://github.com/stackcouture/aws-ecs-project-github-action.git
+  AWS_ACCOUNT_ID: 104824081961
+  AWS_REGION: ap-south-1
+
+jobs: 
+   checkout-and-authenticate: 
+     runs-on: ubuntu-latest
+
+     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.BRANCH }}
+
+      - name: Set up AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ github.event.inputs.AWS_DEFAULT_REGION }}
