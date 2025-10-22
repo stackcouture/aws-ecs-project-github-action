@@ -40,11 +40,13 @@ jobs:
            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
            aws-region: ${{ github.event.inputs.AWS_DEFAULT_REGION }}
+      
       - name: Upload Source Code
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: source-code
           path: .
+          include-hidden-files: true
 
   build-and-push: 
     runs-on: ubuntu-latest
