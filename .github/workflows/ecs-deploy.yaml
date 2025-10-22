@@ -53,7 +53,7 @@ jobs:
     needs: checkout-and-authenticate
     steps: 
       - name: Download Source Code
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: source-code
 
@@ -64,11 +64,11 @@ jobs:
         run: docker build -t ${{ env.IMAGE_NAME }}:latest .
 
       - name: Scan Docker Image with Trivy
-        uses: aquasecurity/trivy-action@v0
+        uses: aquasecurity/trivy-action@v0.10.3
         with:
           image-ref: ${{ env.IMAGE_NAME }}:latest
 
       - name: Push Docker Image to ECR
         run: |
-          docker tag ${{ env.IMAGE_NAME }}:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ github.event.inputs.AWS_DEFAULT_REGION }}.amazonaws.com/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
-          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ github.event.inputs.AWS_DEFAULT_REGION }}.amazonaws.com/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+          docker tag ${{ env.IMAGE_NAME }}:latest ${{ github.event.inputs.AWS_ACCOUNT_ID }}.dkr.ecr.${{ github.event.inputs.AWS_DEFAULT_REGION }}.amazonaws.com/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+          docker push ${{ github.event.inputs.AWS_ACCOUNT_ID }}.dkr.ecr.${{ github.event.inputs.AWS_DEFAULT_REGION }}.amazonaws.com/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
